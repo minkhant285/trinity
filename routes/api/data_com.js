@@ -10,7 +10,7 @@ var dataIn = async (req, res) => {
 router.post('/data_in', dataIn);
 
 var dataGet = async (req, res) => {
-    res.status(200).json({ lat: "21.99277", lng: "96.09539", temp: "45" });
+    res.status(200).json({ data: [{ lat: "21.99277", lng: "96.09539", temp: "45" }, { lat: "21.77777", lng: "96.55555", temp: "55" }] });
 }
 router.get('/test', dataGet);
 
