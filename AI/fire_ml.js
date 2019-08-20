@@ -1,14 +1,15 @@
+var training = require('./train');
 
 exports.train = (a) => {
-    return ("training......");
+    training.train();
 }
 
 exports.predict = (a) => {
-    return (a);
+    return training.predict();
 }
 
-exports.makeDecision = () => {
-    return ("making Decision.....");
+exports.makeDecision = (a) => {
+    return (a)
 }
 
 exports.accuracy = () => {

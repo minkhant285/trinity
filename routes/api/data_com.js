@@ -4,14 +4,21 @@ var router = express.Router();
 
 var dataIn = async (req, res) => {
     var data = req.body;
-    var predict = data_predict.predict(data);
+    var predict = data_predict.predict();
     res.status(200).json({ "data": predict });
 }
 router.post('/data_in', dataIn);
 
 var dataGet = async (req, res) => {
-    res.status(200).json({ data: "many data" });
+    res.status(200).json({ lat: "21.99277", lng: "96.09539", temp: "45" });
 }
+router.get('/test', dataGet);
+
+var train = async (req, res) => {
+    var train_data = data_predict.train();
+    res.status(200).json(train_data);
+}
+router.get('/train', train);
 
 router.get('/data_get', dataGet);
 

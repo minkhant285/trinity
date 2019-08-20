@@ -1,0 +1,44 @@
+[
+    {
+        "weather_temp": 35,
+        "sensor_temp": 60,
+        "weather": 1,
+        "moisture": 3,
+        "fire": "true"
+    },
+    {
+        "weather_temp": 35,
+        "sensor_temp": 40,
+        "weather": 1,
+        "moisture": 5,
+        "fire": "false"
+    },
+    {
+        "weather_temp": 40,
+        "sensor_temp": 45,
+        "weather": 1,
+        "moisture": 6,
+        "fire": "false"
+    },
+    {
+        "weather_temp": 40,
+        "sensor_temp": 65,
+        "weather": 3,
+        "moisture": 3,
+        "fire": "true"
+    },
+    {
+        "weather_temp": 20,
+        "sensor_temp": 25,
+        "weather": 3,
+        "moisture": 8,
+        "fire": "false"
+    },
+    {
+        "weather_temp": 25,
+        "sensor_temp": 35,
+        "weather": 3,
+        "moisture": 8,
+        "fire": "false"
+    }
+]
