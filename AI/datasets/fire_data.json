@@ -1,44 +1,26 @@
 [
     {
-        "weather_temp": 35,
-        "sensor_temp": 60,
-        "weather": 1,
-        "moisture": 3,
-        "fire": "true"
+        "wtemp": 0.03,
+        "stemp": 0.7,
+        "smoke": 0.5,
+        "fire": 1
     },
     {
-        "weather_temp": 35,
-        "sensor_temp": 40,
-        "weather": 1,
-        "moisture": 5,
-        "fire": "false"
+        "wtemp": 0.16,
+        "stemp": 0.09,
+        "smoke": 0.2,
+        "fire": 0
     },
     {
-        "weather_temp": 40,
-        "sensor_temp": 45,
-        "weather": 1,
-        "moisture": 6,
-        "fire": "false"
+        "wtemp": 0.5,
+        "stemp": 0.5,
+        "smoke": 1.0,
+        "fire": 0
     },
     {
-        "weather_temp": 40,
-        "sensor_temp": 65,
-        "weather": 3,
-        "moisture": 3,
-        "fire": "true"
-    },
-    {
-        "weather_temp": 20,
-        "sensor_temp": 25,
-        "weather": 3,
-        "moisture": 8,
-        "fire": "false"
-    },
-    {
-        "weather_temp": 25,
-        "sensor_temp": 35,
-        "weather": 3,
-        "moisture": 8,
-        "fire": "false"
+        "wtemp": 0.8,
+        "stemp": 0.9,
+        "smoke": 1.0,
+        "fire": 1
     }
 ]

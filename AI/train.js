@@ -7,8 +7,8 @@ const trainingData = tf.tensor2d(fire.map(item => [
     item.weather_temp, item.sensor_temp, item.weather, item.moisture
 ]));
 const outputData = tf.tensor2d(fire.map(item => [
-    item.fire === "true",
-    item.fire === "false"
+    item.fire === "true" ? 1 : 0,
+    item.fire === "false" ? 1 : 0
 ]))
 const testingData = tf.tensor2d(fireTesting.map(item => [
     item.weather_temp, item.sensor_temp, item.weather, item.moisture
@@ -43,6 +43,5 @@ exports.train = () => {
 
 exports.predict = () => {
     var result = model.predict(testingData);
-    console.log(outputData);
     console.log(result.argMax().dataSync()[0]);
 }
