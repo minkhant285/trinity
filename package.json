@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tensorflow/tfjs": "^1.2.7",
     "@tensorflow/tfjs-node": "^1.2.7",
     "body-parser": "^1.19.0",
     "brain.js": "^2.0.0-alpha.5",
