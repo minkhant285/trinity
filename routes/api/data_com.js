@@ -1,20 +1,72 @@
 const express = require('express');
-const data_predict = require('../../AI/fire_ml');
+//const data_predict = require('../../AI/fire_ml_connector');
 const ml = require('../../AI/ml');
+const mysql = require('mysql');
+const weather = require('weather-js');
+
 var router = express.Router();
+var time = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+var date = new Date().toLocaleString('en-US', { day: 'numeric', month: 'numeric', year: 'numeric' });
+var return_data = [
+    { lat: "21.99277", lng: "96.09539", temp: "40", fire_status: 2, date: "19/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "55", fire_status: 3, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "28", fire_status: 1, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "60", fire_status: 3, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "39", fire_status: 1, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "42", fire_status: 2, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "75", fire_status: 3, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "26", fire_status: 1, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "85", fire_status: 3, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "32", fire_status: 1, date: "20/8/2019" },
+    { lat: "21.77777", lng: "96.55555", temp: "35", fire_status: 1, date: "20/8/2019" },
+];
+
+const con = mysql.createConnection({
+    host: "localhost",
+    user: "",
+    password: "",
+    database: "test"
+});
+
+
+// weather.find({ search: 'Mandalay, MM', degreeType: 'C' }, function (err, result) {
+//     if (err) console.log(err);
+//     //var result = JSON.stringify(result, null, 1);
+//     //console.log(result[0].current.temperature);
+//     setTimeout(() => { getWeatherData(result[0].current.temperature), 1000 });
+// });
+
+//console.log("Wdata ->" + wData);
+
+
 
 var dataIn = async (req, res) => {
     var data = req.body;
-    var predict = data_predict.predict();
-    res.status(200).json({ "data": predict });
+    con.connect(function (err) {
+        // if (err) throw err;
+        console.log("Connected!");
+        var sql = `INSERT INTO fire_data (lat,lng,wtemp,temp,humidity,date,time) VALUES ('${data.lat}','${data.lng}','32','${data.temp}','${data.humidity}','${date}','${time}')`;
+        con.query(sql, function (err, result) {
+            // if (err) throw err;
+            res.status(201).send({ data });
+        });
+
+    });
+
 }
 router.post('/data_in', dataIn);
 
+
 var dataGet = async (req, res) => {
-    res.status(200).json({
-        data: [{ lat: "21.99277", lng: "96.09539", temp: "45", fire_status: "warning", date: "19/8/2019" },
-        { lat: "21.77777", lng: "96.55555", temp: "55", fire_status: "danger", date: "20/8/2019" }]
+    con.connect(function (err) {
+        //if (err) throw err;
+        con.query("SELECT * FROM fire_data", function (err, result, fields) {
+            // if (err) throw err;
+            res.status(200).json({ return_data: result });
+        });
     });
+    //res.status(200).json({ return_data });
+    console.log("Called from android");
 }
 router.get('/data_get', dataGet);
 
@@ -30,6 +82,5 @@ var predict = async (req, res) => {
     res.status(200).json(result);
 }
 router.post('/predict', predict);
-
 
 module.exports = router;
