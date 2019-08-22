@@ -3,6 +3,7 @@ const express = require('express');
 const ml = require('../../AI/ml');
 const mysql = require('mysql');
 const weather = require('weather-js');
+const DM = require('../../AI/dataManage');
 
 var router = express.Router();
 var time = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
@@ -49,6 +50,7 @@ var dataIn = async (req, res) => {
         con.query(sql, function (err, result) {
             // if (err) throw err;
             res.status(201).send({ data });
+            DM.DataProcessing(data.lat, data.lng, '32', data.temp, data.humidity, date, time);
         });
 
     });
@@ -60,7 +62,7 @@ router.post('/data_in', dataIn);
 var dataGet = async (req, res) => {
     con.connect(function (err) {
         //if (err) throw err;
-        con.query("SELECT * FROM fire_data", function (err, result, fields) {
+        con.query("SELECT * FROM fire_data_processed", function (err, result, fields) {
             // if (err) throw err;
             res.status(200).json({ return_data: result });
         });
