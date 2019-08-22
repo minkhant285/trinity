@@ -5,7 +5,7 @@ const DM = require('../../AI/dataManage');
 
 var router = express.Router();
 var time = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-var date = new Date().toLocaleString('en-US', { day: 'numeric', month: 'numeric', year: 'numeric' });
+var date = new Date().getDate() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getFullYear();
 // var return_data = [
 //     { lat: "21.99277", lng: "96.09539", temp: "40", fire_status: 2, date: "19/8/2019" },
 //     { lat: "21.77777", lng: "96.55555", temp: "55", fire_status: 3, date: "20/8/2019" },
@@ -70,9 +70,11 @@ var dataGet = async (req, res) => {
 router.get('/data_get', dataGet);
 
 var dataHistory = async (req, res) => {
+    var req_date = req.params.date;
     con.connect(function (err) {
+
         //if (err) throw err;
-        con.query("SELECT * FROM fire_data_processed", function (err, result, fields) {
+        con.query("SELECT * FROM fire_data_processed WHERE date LIKE '" + req_date + "'", function (err, result, fields) {
             // if (err) throw err;
             res.status(200).json({ return_data: result });
         });
@@ -80,7 +82,7 @@ var dataHistory = async (req, res) => {
     //res.status(200).json({ return_data });
     console.log("Called from android");
 }
-router.get('/get_history', dataHistory);
+router.get('/get_history/:date', dataHistory);
 
 // var train = async (req, res) => {
 //     //var train_data = data_predict.train();
