@@ -3,7 +3,7 @@ const con = mysql.createConnection({
     host: "localhost",
     user: "",
     password: "",
-    database: "test"
+    database: "efap"
 });
 
 exports.DataProcessing = (lat, lng, wtemp, temp, humidity, date, time) => {
