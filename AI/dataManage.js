@@ -1,8 +1,8 @@
 const mysql = require('mysql');
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "",
-    password: "",
+    host: "192.168.1.235",
+    user: "root",
+    password: "HelloWorld@123",
     database: "efap"
 });
 
@@ -11,7 +11,7 @@ exports.DataProcessing = (lat, lng, wtemp, temp, humidity, date, time) => {
     if (temp >= 40 && temp <= 45) {
         fire_status = 2;
     }
-    else if (temp >= 50) {
+    else if (temp > 45) {
         fire_status = 3;
     }
     else {
